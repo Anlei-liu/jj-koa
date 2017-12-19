@@ -1,6 +1,53 @@
 <% include common/header.ejs %>
-<div>
-    posts
+<% include common/head.ejs %>
+<% include common/sideBar.ejs %>
+<div class="content">
+    <table class="layui-table" lay-data="{url:'/api/post', page:true, id:'posts'}" lay-filter="posts">
+        <thead>
+        <tr>
+            <th lay-data="{field: 'id', sort: true, fixed: 'left'}">ID</th>
+            <th lay-data="{field: 'title'}">标题</th>
+            <th lay-data="{field: 'intro'}">简介</th>
+            <th lay-data="{field: 'time', sort: true}">添加时间</th>
+            <th lay-data="{field: 'type'}">类型</th>
+            <th lay-data="{toolbar: '#postToolbar'}">操作</th>
+        </tr>
+        </thead>
+    </table>
 </div>
+<script type="text/html" id="postToolbar">
+    <a class="layui-btn layui-btn-sm layui-btn-mini" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-sm layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+</script>
+<script>
+    layui.use(['table','jquery'], function(){
+        var table = layui.table,
+            $ = layui.jquery;
+        table.on('tool(posts)', function(obj){
+            var data = obj.data;
+            var layEvent = obj.event;
+            var tr = obj.tr;
 
+            if(layEvent === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    $.ajax({
+                        url:'/api/post',
+                        type: 'DELETE',
+                        data: {
+                            id: data.id
+                        },
+                        success: function (res) {
+                            if (res.code === 1) {
+                                layer.close(index);
+                            }
+                        }
+                    })
+                });
+            } else if(layEvent === 'edit'){
+                location.href = '/customer/posts/edit/' + data.id
+            }
+        });
+    });
+</script>
 <% include common/footer.ejs %>

@@ -1,20 +1,47 @@
 import Router from 'koa-router'
-// front end
-import home from './controller/frontEnd/home'
-import companyDynamics from './controller/frontEnd/companyDynamics'
-import companyProfile from './controller/frontEnd/companyProfile'
-import contact from './controller/frontEnd/contact'
-import fishCake from './controller/frontEnd/fishCake'
-import practice from './controller/frontEnd/practice'
-import product from './controller/frontEnd/product'
+import { selectToken } from './models/user'
 
+import {
+    home,
+    companyDynamics,
+    companyProfile,
+    contact,
+    fishCake,
+    practice,
+    product,
+    admin,
+    posts,
+    api,
+    homeEdit,
+} from './controller'
 
-// back end
-import admin from './controller/backEnd/admin'
-import posts from './controller/backEnd/posts'
-
+const auth = async (ctx, next) => {
+    const cookieToken = ctx.session.token;
+    const sqlToken  = await selectToken(cookieToken);
+    if (sqlToken.length > 0) {
+        ctx.session.token = cookieToken;
+        await next();
+    }else {
+        ctx.redirect('/admin')
+    }
+};
+const Oauth = async (ctx, next) => {
+    const cookieToken = ctx.session.token;
+    const sqlToken  = await selectToken(cookieToken);
+    if (ctx.method === 'GET' || sqlToken.length > 0) {
+        await next();
+    }else {
+        ctx.response.status = 300;
+        ctx.response.body = {
+            code: 0,
+            message: '请先登陆'
+        }
+    }
+};
 export default () => {
     const router = new Router();
+    const backend = new Router();
+    const apiRou = new Router();
     home(router);
     companyDynamics(router);
     companyProfile(router);
@@ -22,9 +49,14 @@ export default () => {
     fishCake(router);
     practice(router);
     product(router);
-
     admin(router);
-    posts(router)
 
+    api(apiRou);
+
+    posts(backend);
+    homeEdit(backend);
+
+    router.use('/customer', auth, backend.routes(), backend.allowedMethods());
+    router.use('/api', Oauth, apiRou.routes(), apiRou.allowedMethods());
     return router
 }
