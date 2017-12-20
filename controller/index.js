@@ -10,6 +10,7 @@ import product from './frontEnd/product'
 import admin from './backEnd/admin'
 import posts from './backEnd/posts'
 import homeEdit from './backEnd/homePage'
+import productList from './backEnd/product'
 // api
 import api from './api/api'
 
@@ -25,4 +26,5 @@ export {
     posts,
     api,
     homeEdit,
+    productList,
 }

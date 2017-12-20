@@ -13,6 +13,7 @@ import {
     posts,
     api,
     homeEdit,
+    productList,
 } from './controller'
 
 const auth = async (ctx, next) => {
@@ -55,6 +56,7 @@ export default () => {
 
     posts(backend);
     homeEdit(backend);
+    productList(backend)
 
     router.use('/customer', auth, backend.routes(), backend.allowedMethods());
     router.use('/api', Oauth, apiRou.routes(), apiRou.allowedMethods());

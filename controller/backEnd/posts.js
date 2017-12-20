@@ -1,4 +1,3 @@
-import { showPost } from '../../models/user'
 
 /**
  * 渲染文章列表页

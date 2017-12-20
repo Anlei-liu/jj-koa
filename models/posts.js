@@ -8,7 +8,7 @@ import query from '../config/db_config'
  * @return {Promise.<void>}
  */
 const addPost = async (name, info, details) => {
-    let sql = `INSERT INTO post(name, info, details) VALUES(?, ?, ?)`;
+    let sql = `INSERT INTO post(title, intro, details) VALUES(?, ?, ?)`;
     let params = [name, info, detail];
     await query(sql, params)
 }
