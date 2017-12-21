@@ -1,6 +1,18 @@
+import { showPost } from "../../models/posts"
 const practice = async ctx => {
+    let page = parseInt(ctx.params.page);
+    if (!page) {
+        page = 1;
+    }
+    let postList = await showPost('1');
+    const pagination = Math.ceil(postList.length / 4);
+    postList = postList.splice((page - 1) * 4, 4);
+    console.log(postList);
     await ctx.render('practice', {
-        title: '123123'
+        postList: postList,
+        title: '料理方法',
+        pagination: pagination,
+        currentPage: page,
     })
 }
 

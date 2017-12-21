@@ -40,28 +40,30 @@
                             <p class="para"><%= item.intro %></p>
                         </div>
                         <div class="/static//static//static/images_1_of_4 bg1 pull-right">
-                            <img src="/wordpress/wp-content/uploads/2017/12/blog_pic2.jpg">
+                            <img src="<%= item.cover %>">
                         </div>
                         <div class="clearfix"></div>
                         <div class="read_btn">
-                            <a href="/posts/details/<%= item.id %>" class="btn">查看详情</a>
+                            <a href="<% item.url %>" class="btn">查看详情</a>
                         </div>
                     </div>
                 <% }) %>
             </div>
             <div class="clearfix"></div>
-            <ul class="pagination">
-                <% if (currentPage > 1) { %>
-                    <li><a href="/company-dynamics/<%= currentPage - 1 %>">&laquo;</a></li>
-                <% } %>
-                <% for(var i=1; i<= pagination; i++) { %>
-                    <li><a href="/company-dynamics/<%= i %>"><%= i %></a></li>
-                <% } %>
-                <% if (currentPage < pagination) { %>
-                    <li><a href="/company-dynamics/<%= currentPage + 1 %>">&raquo;</a></li>
-                <% } %>
-            </ul>
+            <% include components/pagination.ejs %>
         </div>
     </div>
 </div>
+<style>
+    .technology_list {
+        margin-top: 20px;
+    }
+    .technology_main img {
+        max-width: 150px;
+        max-height: 150px;
+    }
+    .tech_para {
+        height: 150px;
+    }
+</style>
 <% include common/footer %>

@@ -1,16 +1,16 @@
 import { showPost } from "../../models/posts"
 const companyDynamics = async ctx => {
-    let page = ctx.query;
-    console.log(page)
+    let page = parseInt(ctx.params.page);
     if (!page) {
         page = 1;
     }
-    const postList = await showPost('公司动态', page, 4);
-    const pagination = 3;
-    // const pagination = Math.ceil(postList.length / 4);
+    let postList = await showPost('0');
+    const pagination = Math.ceil(postList.length / 4);
+    postList = postList.splice((page - 1) * 4, 4);
+    console.log(postList);
     await ctx.render('company-dynamics', {
         postList: postList,
-        title: '123123',
+        title: '公司动态',
         pagination: pagination,
         currentPage: page,
     })
@@ -19,5 +19,5 @@ const companyDynamics = async ctx => {
 export default (router) => {
     router
         .get('/company-dynamics', companyDynamics)
-        .get('/company-dynamics/:id', companyDynamics)
+        .get('/company-dynamics/:page', companyDynamics)
 }

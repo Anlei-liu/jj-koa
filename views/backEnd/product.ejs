@@ -1,20 +1,23 @@
 <% include common/header.ejs %>
 <% include common/head.ejs %>
-<% include common/sideBar.ejs %>
+<% include common/productSideBar.ejs %>
 <div class="content">
-    <table class="layui-table" lay-data="{url:'/api/post', page:true, id:'posts'}" lay-filter="posts">
+    <table class="layui-table" lay-data="{url:'/api/product', page:true, id:'posts'}" lay-filter="posts">
         <thead>
         <tr>
             <th lay-data="{field: 'id', sort: true, fixed: 'left'}">ID</th>
             <th lay-data="{field: 'title'}">标题</th>
-            <th lay-data="{field: 'intro'}">简介</th>
-            <th lay-data="{field: 'time', sort: true}">添加时间</th>
             <th lay-data="{field: 'type'}">类型</th>
+            <th lay-data="{field: 'cover', templet: '#cover'}">封面</th>
+            <th lay-data="{field: 'time', sort: true}">添加时间</th>
             <th lay-data="{toolbar: '#postToolbar'}">操作</th>
         </tr>
         </thead>
     </table>
 </div>
+<script type="text/html" id="cover">
+    <img src="{{ d.cover }}" style="max-width: 100px; max-height: 100px;" alt="">
+</script>
 <script type="text/html" id="postToolbar">
     <a class="layui-btn layui-btn-sm layui-btn-mini" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-sm layui-btn-danger layui-btn-mini" lay-event="del">删除</a>

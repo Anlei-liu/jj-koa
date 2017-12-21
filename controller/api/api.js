@@ -1,8 +1,10 @@
 import { showPost } from '../../models/posts'
+import { queryProductAll } from "../../models/product"
 import multer from 'koa-multer';
 import oPath from 'path'
 import fs from 'fs';
-const oUpload = multer({dest: './uploads/'})
+import routes from "../../routes";
+const oUpload = multer({dest: './public/uploads/'})
 /**
  * 查询文章列表
  * @param ctx
@@ -11,12 +13,14 @@ const oUpload = multer({dest: './uploads/'})
  */
 const queryPost = async (ctx, next) => {
     const { page, limit } = ctx.request.query;
-    const postList = await showPost(null, page, limit);
+    let postList = await showPost(null);
+    const len = postList.length;
+    postList = postList.splice((page - 1) * limit, limit);
     if (postList.length > 0) {
         const _result = {
             "code": 0,
             "msg": 'success',
-            "count": postList.length,
+            "count": len,
             "data": postList
         };
         ctx.response.status = 200;
@@ -24,38 +28,42 @@ const queryPost = async (ctx, next) => {
     }
 };
 
-/**
- * 删除文章
- * @param ctx
- * @param next
- * @return {Promise.<void>}
- */
-const delPost = async (ctx, next) => {
-    ctx.response.status = 200;
-    ctx.response.body = {
-        code: 1,
-        msg: 'success'
-    }
-};
-
 const upload = async (ctx, next) => {
     const {originalname, path, mimetype} = ctx.req.file;
-    console.log(path)
     const reader = fs.createReadStream(oPath.join(`./${path}`));
-    const stream = fs.createWriteStream(oPath.join(`./uploads/${originalname}`));
+    const stream = fs.createWriteStream(oPath.join(`./public/uploads/${originalname}`));
     reader.pipe(stream);
     console.log('uploading %s -> %s', originalname, path);
     fs.unlink(path)
     ctx.response.status = 200;
     ctx.response.body = {
-        code: 1,
-        msg: 'success'
+        code: 0,
+        msg: 'success',
+        url: `${ctx.origin}/uploads/${originalname}`
     }
 };
+
+const queryProduct = async (ctx, next) => {
+    const { page, limit } = ctx.request.query;
+    let list = await queryProductAll(null);
+    console.log(list)
+    const len = list.length;
+    list = list.splice((page - 1) * limit, limit);
+    if (list.length > 0) {
+        const _result = {
+            "code": 0,
+            "msg": 'success',
+            "count": len,
+            "data": list
+        };
+        ctx.response.status = 200;
+        ctx.response.body = _result
+    }
+}
 
 export default (router) => {
     router
         .get('/post', queryPost)
-        .del('/post', delPost)
+        .get('/product', queryProduct)
         .post('/upload', oUpload.single('file'), upload)
 }

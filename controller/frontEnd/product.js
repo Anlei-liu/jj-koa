@@ -4,7 +4,14 @@ const product = async ctx => {
     })
 }
 
+const productAdd = async ctx => {
+    await ctx.render('product', {
+        title: '123123'
+    })
+}
+
 export default (router) => {
     router
-        .get('/product', product)
+        .get('/product/list', product)
+        .get('/product/add', productAdd)
 }
