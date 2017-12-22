@@ -18,11 +18,10 @@ const addPost = async (title, type, cover, intro, details) => {
 /**
  * 查询文章
  * @param type  文章类型
- * @param page  第几页
- * @param limit 一页几张
  * @return {Promise.<*>}
  */
-const showPost = async (type, page, limit) => {
+
+const showPost = async (type) => {
     let sql = '';
     if (type) {
         sql = `SELECT * FROM post WHERE type='${ type }' ORDER BY id DESC`

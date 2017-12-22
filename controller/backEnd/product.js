@@ -1,4 +1,8 @@
-import { addProduct } from "../../models/product"
+import {
+    addProduct,
+    delProduct,
+    queryProductOne
+} from "../../models/product"
 /**
  * 渲染文章列表页
  * @param ctx
@@ -32,9 +36,38 @@ const saveProduct = async (ctx, next) => {
     }
 }
 
+const delProductRou = async (ctx, next) => {
+    const { id }  = ctx.request.body;
+    console.log(id)
+    try {
+        await delProduct(id);
+        ctx.response.status = 200;
+        ctx.response.body = {
+            code: 1,
+            msg: 'success'
+        }
+    }catch (e) {
+        console.log(e)
+    }
+}
+
+const productEdit = async (ctx, next) => {
+    const id = ctx.params.id;
+    const product = await queryProductOne(id);
+    await ctx.render('backEnd/productEdit', {
+        pId: product[0].id,
+        pTitle: product[0].title,
+        image: product[0].cover,
+        type: product[0].type,
+        title: 'edit product'
+    })
+}
+
 export default (router) => {
     router
         .get('/product/list', renderProduct)
+        .delete('/product/delete', delProductRou)
         .get('/product/add', productAdd)
         .post('/product/add', saveProduct)
+        .get('/product/edit/:id', productEdit)
 }

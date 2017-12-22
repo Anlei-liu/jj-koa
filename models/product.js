@@ -7,7 +7,7 @@ const addProduct = async (title, cover, type) => {
 };
 
 const delProduct = async (id) => {
-    let sql = `DELETE * FROM post WHERE id='1'`;
+    let sql = `DELETE FROM product WHERE id='${id}'`;
     return await query(sql)
 };
 
@@ -47,7 +47,7 @@ const queryProductAll = async (type) => {
 };
 
 const queryProductOne = async (id) => {
-    let sql = `SELECT * FROM 'product' WHERE id='${id}'`;
+    let sql = `SELECT * FROM product WHERE id='${id}'`;
     let result = await query(sql)
     return changeType(result)
 };

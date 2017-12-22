@@ -46,7 +46,6 @@ const upload = async (ctx, next) => {
 const queryProduct = async (ctx, next) => {
     const { page, limit } = ctx.request.query;
     let list = await queryProductAll(null);
-    console.log(list)
     const len = list.length;
     list = list.splice((page - 1) * limit, limit);
     if (list.length > 0) {

@@ -2,18 +2,13 @@ import Router from 'koa-router'
 import { selectToken } from './models/user'
 
 import {
-    home,
-    companyDynamics,
-    companyProfile,
-    contact,
-    fishCake,
-    practice,
-    product,
+    frontEnd,
     admin,
     posts,
     api,
     homeEdit,
     productList,
+    module
 } from './controller'
 
 const auth = async (ctx, next) => {
@@ -43,20 +38,14 @@ export default () => {
     const router = new Router();
     const backend = new Router();
     const apiRou = new Router();
-    home(router);
-    companyDynamics(router);
-    companyProfile(router);
-    contact(router);
-    fishCake(router);
-    practice(router);
-    product(router);
-    admin(router);
-
+    frontEnd(router);
+    admin(router)
     api(apiRou);
 
     posts(backend);
     homeEdit(backend);
-    productList(backend)
+    productList(backend);
+    module(backend);
 
     router.use('/customer', auth, backend.routes(), backend.allowedMethods());
     router.use('/api', Oauth, apiRou.routes(), apiRou.allowedMethods());
