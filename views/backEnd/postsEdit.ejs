@@ -1,0 +1,74 @@
+<% include common/header.ejs %>
+<% include common/head.ejs %>
+<% include common/sideBar.ejs %>
+<div class="content">
+    <form class="layui-form" layui-filter="*">
+        <input type="hidden" name="id" value="<%= postId %>">
+        <div class="layui-form-item">
+            <label class="layui-form-label">文章标题</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" value="<%= postTitle %>" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">文章封面</label>
+            <div class="layui-input-block">
+                <% include common/upload.ejs %>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">文章简介</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" class="layui-textarea" name="intro"><%= postIntro %></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">文章类型</label>
+            <div class="layui-input-block">
+
+                <input type="radio" name="type" value="0" title="公司动态" <% if (posttype == 0) { %>checked<% } %>>
+                <input type="radio" name="type" value="1" title="料理方法" <% if (posttype == 1) { %>checked<% } %>>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">文章内容</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" class="layui-textarea" name="details"><%= postDetails %></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        layui.use(['form', 'jquery'], function(){
+            var form = layui.form,
+                $ = layui.jquery;
+            form.on('submit(*)', function(data){
+                console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+                console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+                console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+                var params = {
+                    url:'/customer/post/add',
+                    type:'POST',
+                    data: data.field,
+                }
+                if ($("[name='id']") > 0) {
+                    params = {
+                        url:'/customer/post',
+                        type:'put',
+                        data: data.field,
+                    }
+                }
+                $.ajax(params).then(function (res) {
+                    location.href = '/customer/posts'
+                })
+                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+            });
+        });
+    </script>
+</div>
+<% include common/footer.ejs %>

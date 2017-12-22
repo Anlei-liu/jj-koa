@@ -1,0 +1,63 @@
+<% include common/header.ejs %>
+<% include common/head.ejs %>
+<% include common/productSideBar.ejs %>
+<div class="content">
+    <form class="layui-form" layui-filter="*">
+        <input type="hidden" name="id" value="<%= pId %>">
+        <div class="layui-form-item">
+            <label class="layui-form-label">产品名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" value="<%= pTitle %>" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">产品图片</label>
+            <div class="layui-input-block">
+                <% include common/upload.ejs %>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">产品类型</label>
+            <div class="layui-input-block">
+                <input type="radio" name="type" value="0" title="高级产品" <% if (type == 0) { %>checked<% } %>>
+                <input type="radio" name="type" value="1" title="人气产品" <% if (type == 1) { %>checked<% } %>>
+                <input type="radio" name="type" value="2" title="主题产品" <% if (type == 2) { %>checked<% } %>>
+                <input type="radio" name="type" value="3" title="礼盒套装" <% if (type == 3) { %>checked<% } %>>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        layui.use(['form', 'jquery'], function(){
+            var form = layui.form,
+                $ = layui.jquery;
+            form.on('submit(*)', function(data){
+                console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+                console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+                console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+                var params = {
+                    url:'/customer/product/add',
+                    type:'POST',
+                    data: data.field,
+                }
+                if ($("[name='id']") > 0) {
+                    params = {
+                        url:'/customer/post',
+                        type:'put',
+                        data: data.field,
+                    }
+                }
+                $.ajax(params).then(function (res) {
+                    location.href = '/customer/product/list'
+                })
+                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+            });
+        });
+    </script>
+</div>
+<% include common/footer.ejs %>

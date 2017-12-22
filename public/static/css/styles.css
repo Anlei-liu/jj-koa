@@ -10,3 +10,33 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+header {
+    float: left;
+    width: 100%;
+}
+.user {
+    float: right;
+}
+.nav {
+    float: left;
+}
+.logo {
+    float: left;
+    margin-left: 20px;
+    width: 200px;
+}
+.container {
+    width: 100%;
+    overflow: hidden;
+}
+.sideBar {
+    float: left;
+    min-height: 100vh;
+}
+.content {
+    overflow: hidden;
+    margin: 20px 20px 20px 220px;
+}
+.layui-upload-img {
+    max-width: 100px;
+}

@@ -1,0 +1,11 @@
+<ul class="pagination">
+    <% if (currentPage > 1) { %>
+    <li><a href="/company-dynamics/<%= currentPage - 1 %>">&laquo;</a></li>
+    <% } %>
+    <% for(var i=1; i<= pagination; i++) { %>
+    <li><a href="/company-dynamics/<%= i %>"><%= i %></a></li>
+    <% } %>
+    <% if (currentPage < pagination) { %>
+    <li><a href="/company-dynamics/<%= currentPage + 1 %>">&raquo;</a></li>
+    <% } %>
+</ul>
