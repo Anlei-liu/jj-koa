@@ -1,0 +1,31 @@
+<header class="layui-bg-cyan">
+    <div class="logo">
+        <img src="" alt="">
+    </div>
+    <ul class="layui-nav nav" lay-filter="">
+        <li class="layui-nav-item"><a href="/customer/manage">管理</a></li>
+        <li class="layui-nav-item"><a href="/customer/page/home">页面</a></li>
+        <li class="layui-nav-item layui-this"><a href="/customer/posts">文章</a></li>
+        <li class="layui-nav-item"><a href="/customer/product/list">产品</a></li>
+        <li class="layui-nav-item"><a href="/customer/module/slider">模块</a></li>
+    </ul>
+    <ul class="layui-nav user" lay-filter="">
+        <li class="layui-nav-item">
+            <a href=""><img src="http://t.cn/RCzsdCq" class="layui-nav-img">我</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">修改信息</a></dd>
+                <dd><a href="javascript:;">退出</a></dd>
+            </dl>
+        </li>
+    </ul>
+</header>
+
+<script>
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+
+        //…
+    });
+</script>
+<div class="container">

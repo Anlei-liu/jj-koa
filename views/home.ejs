@@ -314,39 +314,15 @@
             <div class="col-md-3 span1_of_3">
                 <h4>公司动态</h4>
                 <ul class="list-unstyled nav_list" style="width: 250px;">
-                    <li><a href="single-page.html">2017.11.03 员工生日会标题文字标题文字标题文字</a></li>
-                    <li><a href="single-page.html">2017.11.03 员工生日会标题文字</a></li>
-                    <li><a href="single-page.html">2017.11.03 员工生日标题文字标题文字会</a></li>
-                    <li><a href="single-page.html">2017.11.03 员工生日会标题文字</a></li>
-                    <li><a href="single-page.html">2017.11.03 员工生日会标题文字</a></li>
+                    <% postList.forEach(function (item) { %>
+                        <li><a href="single-page.html"><%= item.time %> <%= item.title %></a></li>
+                    <% }) %>
                 </ul>
             </div>
             <div class="col-md-6 span1_of_3">
                 <h4>公司简介</h4>
                 <h5><p style="width:530px;">三湖阳光食品（青岛）有限公司成立于2015年，
                         以水产品、食品的加工出口为主要经营范围，公司通过了HACCP体系认证欧盟注册以及SC食品生产许可等，目前出口至美国加拿大新西兰韩国等地。公司位于山东省青岛市李沧区合川路48号。</p></h5>
-                <!-- start circle -->
-                <!--<ul class="list-unstyled circle_list">
-                    <li>
-                        <div class="safari chart">
-                          <div class="tag">50%</div>
-                        </div>
-                        <h4 class="style">meier</h4>
-                    </li>
-                    <li>
-                        <div class="moz chart">
-                          <div class="tag">75%</div>
-                        </div>
-                        <h4 class="style">johnson</h4>
-                    </li>
-                    <li>
-                        <div class="google chart">
-                          <div class="tag">90%</div>
-                        </div>
-                        <h4 class="style">junghanns</h4>
-                    </li>
-                </ul>-->
-                <!-- end circle -->
             </div>
             <div class="col-md-3 span1_of_3">
                 <h4>客户评价</h4>

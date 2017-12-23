@@ -1,0 +1,39 @@
+<div class="layui-upload">
+    <button type="button" class="layui-btn" id="test1">上传图片</button>
+    <input type="hidden" name="cover" value="<%= image %>" lay-verify="required">
+    <div class="layui-upload-list">
+        <img class="layui-upload-img" id="preview" src="<%= image %>">
+        <p id="demoText"></p>
+    </div>
+</div>
+<script>
+    layui.use(['upload', 'jquery'], function(){
+        var upload = layui.upload,
+            $ = layui.jquery;
+
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: '/api/upload/'
+            ,before: function(obj){
+                obj.preview(function(index, file, result){
+                    $('#preview').attr('src', result);
+                });
+            }
+            ,done: function(res){
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                $('[name="cover"]').val(res.url);
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+    });
+</script>
