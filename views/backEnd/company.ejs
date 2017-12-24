@@ -1,0 +1,78 @@
+<% include common/header.ejs %>
+<% include common/head.ejs %>
+<% include common/manageSideBar.ejs %>
+<div class="content">
+    <form class="layui-form" lay-filter="*"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">经营理念</label>
+            <div class="layui-input-block">
+                <input type="text" name="idea" value="<%= company.idea %>" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司地址</label>
+            <div class="layui-input-block">
+                <input type="text" name="address" value="<%= company.address %>" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司电话</label>
+            <div class="layui-input-block">
+                <input type="text" name="tel" value="<%= company.tel %>" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司传真</label>
+            <div class="layui-input-block">
+                <input type="text" name="fax" value="<%= company.fax %>" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司邮箱</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" value="<%= company.email %>" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">公司简介</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" name="intro" class="layui-textarea"><%= company.intro %></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">客户评价</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" name="evaluate" class="layui-textarea"><%= company.evaluate %></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+        <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+    </form>
+    <script>
+        layui.use(['form','jquery'], function(){
+            var form = layui.form,
+                    $ = layui.jquery;
+            form.on('submit(*)', function(data){
+                $.ajax({
+                    url:'/customer/manage/company',
+                    type: 'POST',
+                    data: data.field,
+                    success: function (res) {
+                        if (res.code === 0) {
+                            alert('保存成功');
+                        }else {
+                            alert('保存失败');
+                        }
+                    }
+                })
+                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+            });
+        });
+    </script>
+</div>
+<% include common/footer.ejs %>

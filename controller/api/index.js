@@ -1,4 +1,5 @@
 import { showPost } from '../../models/posts'
+import { saveContact } from '../../models/modules'
 import { queryProductAll } from "../../models/product"
 import multer from 'koa-multer';
 import oPath from 'path'
@@ -15,17 +16,25 @@ const queryPost = async (ctx, next) => {
     const { page, limit } = ctx.request.query;
     let postList = await showPost(null);
     const len = postList.length;
-    postList = postList.splice((page - 1) * limit, limit);
-    if (postList.length > 0) {
-        const _result = {
+    let _result = {};
+    console.log(postList)
+    if (len > 0) {
+        postList = postList.splice((page - 1) * limit, limit);
+        _result = {
             "code": 0,
             "msg": 'success',
             "count": len,
             "data": postList
         };
-        ctx.response.status = 200;
-        ctx.response.body = _result
+    }else {
+        _result = {
+            "code": 1,
+            "msg": '数据为空',
+            "count": len,
+        };
     }
+    ctx.response.status = 200;
+    ctx.response.body = _result
 };
 
 const upload = async (ctx, next) => {
@@ -46,19 +55,25 @@ const upload = async (ctx, next) => {
 const queryProduct = async (ctx, next) => {
     const { page, limit } = ctx.request.query;
     let list = await queryProductAll(null);
-    console.log(list)
     const len = list.length;
+    let _result = {};
     list = list.splice((page - 1) * limit, limit);
-    if (list.length > 0) {
-        const _result = {
+    if (len > 0) {
+        _result = {
             "code": 0,
             "msg": 'success',
             "count": len,
             "data": list
         };
-        ctx.response.status = 200;
-        ctx.response.body = _result
+    }else {
+        _result = {
+            "code": 1,
+            "msg": '数据为空',
+            "count": len
+        };
     }
+    ctx.response.status = 200;
+    ctx.response.body = _result
 }
 
 export default (router) => {

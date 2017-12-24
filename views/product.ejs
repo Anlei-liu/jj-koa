@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>经典做法</title>
+    <title><%= title %></title>
     <!-- Bootstrap -->
     <link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <link href="/static/css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -22,7 +22,7 @@
         <div class="main_grid1">
             <h3 class="style pull-left">产品中心</h3>
             <ol class="breadcrumb pull-right">
-                <li><a href="index.html">首页</a></li>
+                <li><a href="/">首页</a></li>
                 <li class="active">产品中心</li>
             </ol>
             <div class="clearfix"></div>
@@ -32,196 +32,101 @@
 <div class="main_btm1"><!-- start main_btm -->
     <div class="container">
         <div class="portfolio_main">
-            <ul id="filters" class="clearfix">
-                <li>
-                    <span class="filter active" data-filter="app card icon web">全部</span>
-                </li>
-                <li>
-                    <span class="filter" data-filter="app  icon">高级产品</span>
-                </li>
-                <li>
-                    <span class="filter" data-filter="card ">人气产品</span>
-                </li>
-                <li>
-                    <span class="filter" data-filter="icon app card ">主题产品</span>
-                </li>
-                <li>
-                    <span class="filter" data-filter="web card icon">礼盒套装</span>
-                </li>
-            </ul>
-            <div id="portfoliolist">
-                <div class="portfolio logo1" data-cat="logo">
-                    <div class="portfolio-wrapper">
-                        <div class="fancyDemo">
-                            <a rel="group" title="" href="/wordpress/wp-content/uploads/2017/12/s1.jpg">
-                                <img src="/wordpress/wp-content/uploads/2017/12/s1.jpg" alt=""class="img-responsive"/>
-                            </a>
-                        </div>
-                        <div class="label">
-                            <div class="label-text">
-                                <span class="text-category">Logo</span>
+            <dl id="pro0">
+                <dt>高级产品</dt>
+                <% productList.forEach(function (item) { %>
+                    <% if(item.type == '高级产品') { %>
+                        <dd>
+                            <div class="product-content">
+                                <div style="background-image: url('<%= item.cover %>')"></div>
+                                <P><%= item.title %></P>
                             </div>
-                            <div class="label-bg"></div>
-                        </div>
+                        </dd>
+                    <% } %>
+                <% }) %>
+            </dl>
+            <dl id="pro1">
+                <dt>人气产品</dt>
+                <% productList.forEach(function (item) { %>
+                <% if(item.type == '人气产品') { %>
+                <dd>
+                    <div class="product-content">
+                        <div style="background-image: url('<%= item.cover %>')"></div>
+                        <P><%= item.title %></P>
                     </div>
-                </div>
-                <div class="portfolio app" data-cat="app">
-                    <div class="portfolio-wrapper">
-                        <div class="fancyDemo">
-                            <a rel="group" title="" href="/wordpress/wp-content/uploads/2017/12/s2.jpg"><img src="/wordpress/wp-content/uploads/2017/12/s2.jpg" alt=""class="img-responsive"/></a>
-                        </div>
-                        <div class="label">
-                            <div class="label-text">
-                                <span class="text-category">APP</span>
-                            </div>
-                            <div class="label-bg"></div>
-                        </div>
+                </dd>
+                <% } %>
+                <% }) %>
+            </dl>
+            <dl id="pro2">
+                <dt>主题产品</dt>
+                <% productList.forEach(function (item) { %>
+                <% if(item.type == '主题产品') { %>
+                <dd>
+                    <div class="product-content">
+                        <div style="background-image: url('<%= item.cover %>')"></div>
+                        <P><%= item.title %></P>
                     </div>
-                </div>
-                <div class="portfolio web" data-cat="web">
-                    <div class="portfolio-wrapper">
-                        <div class="fancyDemo">
-                            <a rel="group" title="" href="/wordpress/wp-content/uploads/2017/12/s3.jpg"><img src="/wordpress/wp-content/uploads/2017/12/s3.jpg" alt=""class="img-responsive"/></a>
-                        </div>
-                        <div class="label">
-                            <div class="label-text">
-                                <span class="text-category">Web design</span>
-                            </div>
-                            <div class="label-bg"></div>
-                        </div>
+                </dd>
+                <% } %>
+                <% }) %>
+            </dl>
+            <dl id="pro3">
+                <dt>礼盒套装</dt>
+                <% productList.forEach(function (item) { %>
+                <% if(item.type == '礼盒套装') { %>
+                <dd>
+                    <div class="product-content">
+                        <div style="background-image: url('<%= item.cover %>')"></div>
+                        <P><%= item.title %></P>
                     </div>
-                </div>
-                <div class="portfolio card" data-cat="card">
-                    <div class="portfolio-wrapper">
-                        <div class="fancyDemo">
-                            <a rel="group" title="" href="/wordpress/wp-content/uploads/2017/12/s4.jpg"><img src="/wordpress/wp-content/uploads/2017/12/s4.jpg" alt=""class="img-responsive"/></a>
-                        </div>
-                        <div class="label">
-                            <div class="label-text">
-                                <span class="text-category">Business card</span>
-                            </div>
-                            <div class="label-bg"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio app" data-cat="app">
-                    <div class="portfolio-wrapper">
-                        <div class="fancyDemo">
-                            <a rel="group" title="" href="/wordpress/wp-content/uploads/2017/12/s5.jpg"><img src="/wordpress/wp-content/uploads/2017/12/s5.jpg" alt=""class="img-responsive"/></a>
-                        </div>
-                        <div class="label">
-                            <div class="label-text">
-                                <span class="text-category">APP</span>
-                            </div>
-                            <div class="label-bg"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio card" data-cat="card">
-                    <div class="portfolio-wrapper">
-                        <div class="fancyDemo">
-                            <a rel="group" title="" href="/wordpress/wp-content/uploads/2017/12/s6.jpg"><img src="/wordpress/wp-content/uploads/2017/12/s6.jpg" alt=""class="img-responsive"/></a>
-                        </div>
-                        <div class="label">
-                            <div class="label-text">
-                                <span class="text-category">Business card</span>
-                            </div>
-                            <div class="label-bg"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio card" data-cat="card">
-                    <div class="portfolio-wrapper">
-                        <div class="fancyDemo">
-                            <a rel="group" title="" href="/wordpress/wp-content/uploads/2017/12/s7.jpg"><img src="/wordpress/wp-content/uploads/2017/12/s7.jpg" alt=""class="img-responsive"/></a>
-                        </div>
-                        <div class="label">
-                            <div class="label-text">
-                                <span class="text-category">Business card</span>
-                            </div>
-                            <div class="label-bg"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio logo1" data-cat="web">
-                    <div class="portfolio-wrapper">
-                        <div class="fancyDemo">
-                            <a rel="group" title="" href="/wordpress/wp-content/uploads/2017/12/s8.jpg"><img src="/wordpress/wp-content/uploads/2017/12/s8.jpg" alt=""class="img-responsive"/></a>
-                        </div>
-                        <div class="label">
-                            <div class="label-text">
-                                <span class="text-category">Logo</span>
-                            </div>
-                            <div class="label-bg"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio app" data-cat="app">
-                    <div class="portfolio-wrapper">
-                        <div class="fancyDemo">
-                            <a rel="group" title="" href="/wordpress/wp-content/uploads/2017/12/s2.jpg"><img src="/wordpress/wp-content/uploads/2017/12/s2.jpg" alt=""class="img-responsive"/></a>
-                        </div>
-                        <div class="label">
-                            <div class="label-text">
-                                <span class="text-category">APP</span>
-                            </div>
-                            <div class="label-bg"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio card" data-cat="card">
-                    <div class="portfolio-wrapper">
-                        <div class="fancyDemo">
-                            <a rel="group" title="" href="/wordpress/wp-content/uploads/2017/12/s5.jpg"><img src="/wordpress/wp-content/uploads/2017/12/s5.jpg" alt=""class="img-responsive"/></a>
-                        </div>
-                        <div class="label">
-                            <div class="label-text">
-                                <span class="text-category">Business card</span>
-                            </div>
-                            <div class="label-bg"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio logo1" data-cat="icon">
-                    <div class="portfolio-wrapper">
-                        <div class="fancyDemo">
-                            <a rel="group" title="" href="/wordpress/wp-content/uploads/2017/12/s1.jpg"><img src="/wordpress/wp-content/uploads/2017/12/s1.jpg" alt=""class="img-responsive"/></a>
-                        </div>
-                        <div class="label">
-                            <div class="label-text">
-                                <span class="text-category">Logo</span>
-                            </div>
-                            <div class="label-bg"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio logo1" data-cat="web">
-                    <div class="portfolio-wrapper">
-                        <div class="fancyDemo">
-                            <a rel="group" title="" href="/wordpress/wp-content/uploads/2017/12/s5.jpg"><img src="/wordpress/wp-content/uploads/2017/12/s5.jpg" alt=""class="img-responsive"/></a>
-                        </div>
-                        <div class="label">
-                            <div class="label-text">
-                                <span class="text-category">App</span>
-                            </div>
-                            <div class="label-bg"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            <ul class="pagination">
-                <li><a href="#">Prev</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li class="cau_hide"><a href="#">4</a></li>
-                <li class="cau_hide"><a href="#">5</a></li>
-                <li class="cau_hide"><a href="#">6</a></li>
-                <li class="cau_hide"><a href="#">7</a></li>
-                <li><a href="#">Next</a></li>
-            </ul>
+                </dd>
+                <% } %>
+                <% }) %>
+            </dl>
         </div>
     </div>
 </div>
+<style>
+    .portfolio_main dt {
+        font-size: 28px;
+        font-weight: 600;
+    }
+    .portfolio_main dl {
+        overflow: hidden;
+    }
+    .portfolio_main dd {
+        float: left;
+        margin: 15px;
+    }
+    .portfolio_main dd .product-content {
+        width: 240px;
+        height: 240px;
+        overflow: hidden;
+        position: relative;
+    }
+    .portfolio_main dd .product-content div {
+        width: inherit;
+        height: inherit;
+        background-size: cover;
+        background-position: center center;
+        transition: all .5s;
+    }
+    .portfolio_main dd .product-content:hover div {
+        transform: scale(1.3);
+    }
+    .portfolio_main dd p {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        padding-left: 10px;
+        overflow: hidden;
+        background-color: rgba(0,0,0,.4);
+        color: #fff;
+        line-height: 2;
+        font-size: 20px;
+    }
+</style>
 <% include common/footer %>

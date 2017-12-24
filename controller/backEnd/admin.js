@@ -24,6 +24,7 @@ const login = async (ctx, next) => {
     const { account, password, remember } = ctx.request.body;
     const user = await showUser(account);
     let result = {};
+    console.log(password, user[0].password)
     if (user.length > 0 && bcrypt.compareSync(password, user[0].password)) {
         ctx.session.token = user[0].token;
         result.code = 1;

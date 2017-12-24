@@ -35,7 +35,7 @@
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
                     $.ajax({
-                        url:'/api/post',
+                        url:'/customer/product/delete',
                         type: 'DELETE',
                         data: {
                             id: data.id
@@ -48,7 +48,7 @@
                     })
                 });
             } else if(layEvent === 'edit'){
-                location.href = '/customer/posts/edit/' + data.id
+                location.href = '/customer/product/edit/' + data.id
             }
         });
     });

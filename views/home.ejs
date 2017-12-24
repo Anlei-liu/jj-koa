@@ -182,7 +182,6 @@
 
         });
     </script>
-    <script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script>
 </head>
 <body>
 <% include common/header %>
@@ -227,10 +226,10 @@
             <div class="top_grid"><!-- start top_grid -->
                 <div class="col-md-10 span1_of_1">
                     <h3>经营理念</h3>
-                    <p>严格选材，把控质量关，生产出值得消费者信赖的产品。</p>
+                    <p><%= company.idea %></p>
                 </div>
                 <div class="col-md-2 span1_of_2">
-                    <a class="btn" href="经营理念.html">查看详情</a>
+                    <a class="btn" href="/company-profile">查看详情</a>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -241,7 +240,7 @@
                         <h3>人气产品</h3>
                         <p>人气产品文字简单说明字简单说明文字简单说明文字简单说明文字简单说明文字简单说明</p>
                         <div class="read_more">
-                            <a class="btn btn-2 active" href="portfolio.html">查看详情</a>
+                            <a class="btn btn-2 active" href="/product#pro0">查看详情</a>
                         </div>
                     </div>
                 </div>
@@ -251,7 +250,7 @@
                         <h3>主题产品</h3>
                         <p>主题产品文字文字简单说明文字简单说明文字简单说明文字简单说明文字简单说明文字简单说明</p>
                         <div class="read_more">
-                            <a class="btn  btn-2b" href="portfolio.html">查看详情</a>
+                            <a class="btn  btn-2b" href="/product#pro1">查看详情</a>
                         </div>
                     </div>
                 </div>
@@ -261,7 +260,7 @@
                         <h3>高级产品</h3>
                         <p>高级产品文字简单文字简单说明文字简单说明文字简单说明文字简单说明</p>
                         <div class="read_more">
-                            <a class="btn btn-2b" href="portfolio.html">查看详情</a>
+                            <a class="btn btn-2b" href="/product#pro2">查看详情</a>
                         </div>
                     </div>
                 </div>
@@ -271,7 +270,7 @@
                         <h3>礼盒套餐</h3>
                         <p>礼盒套餐文字简单文字简单说明文字简单说明文字简单说明文字简单说明文字简单说明文字简单说明文字简单说明</p>
                         <div class="read_more">
-                            <a class="btn btn-2b" href="portfolio.html">查看详情</a>
+                            <a class="btn btn-2b" href="/product#pro3">查看详情</a>
                         </div>
                     </div>
                 </div>
@@ -314,44 +313,19 @@
             <div class="col-md-3 span1_of_3">
                 <h4>公司动态</h4>
                 <ul class="list-unstyled nav_list" style="width: 250px;">
-                    <li><a href="single-page.html">2017.11.03 员工生日会标题文字标题文字标题文字</a></li>
-                    <li><a href="single-page.html">2017.11.03 员工生日会标题文字</a></li>
-                    <li><a href="single-page.html">2017.11.03 员工生日标题文字标题文字会</a></li>
-                    <li><a href="single-page.html">2017.11.03 员工生日会标题文字</a></li>
-                    <li><a href="single-page.html">2017.11.03 员工生日会标题文字</a></li>
+                    <% postList.forEach(function (item) { %>
+                        <li><a href="/content/<%= item.id %>"><%= item.time %> <%= item.title %></a></li>
+                    <% }) %>
                 </ul>
             </div>
             <div class="col-md-6 span1_of_3">
                 <h4>公司简介</h4>
-                <h5><p style="width:530px;">三湖阳光食品（青岛）有限公司成立于2015年，
-                        以水产品、食品的加工出口为主要经营范围，公司通过了HACCP体系认证欧盟注册以及SC食品生产许可等，目前出口至美国加拿大新西兰韩国等地。公司位于山东省青岛市李沧区合川路48号。</p></h5>
-                <!-- start circle -->
-                <!--<ul class="list-unstyled circle_list">
-                    <li>
-                        <div class="safari chart">
-                          <div class="tag">50%</div>
-                        </div>
-                        <h4 class="style">meier</h4>
-                    </li>
-                    <li>
-                        <div class="moz chart">
-                          <div class="tag">75%</div>
-                        </div>
-                        <h4 class="style">johnson</h4>
-                    </li>
-                    <li>
-                        <div class="google chart">
-                          <div class="tag">90%</div>
-                        </div>
-                        <h4 class="style">junghanns</h4>
-                    </li>
-                </ul>-->
-                <!-- end circle -->
+                <h5><p style="width:530px;"><%= company.intro %></p></h5>
             </div>
             <div class="col-md-3 span1_of_3">
                 <h4>客户评价</h4>
                 <div class="clients">
-                    <p>三湖阳光食品有限公司，受到广大客户的好评。代替文字代替文字代替文字代替文字代替文字代，替文字代替文字代替文字代替文字代替文字。</p>
+                    <p><%= company.evaluate %></p>
                 </div>
 
             </div>
