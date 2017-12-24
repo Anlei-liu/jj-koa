@@ -8,7 +8,8 @@ import {
     api,
     homeEdit,
     productList,
-    module
+    module,
+    manage
 } from './controller'
 
 const auth = async (ctx, next) => {
@@ -46,6 +47,7 @@ export default () => {
     homeEdit(backend);
     productList(backend);
     module(backend);
+    manage(backend);
 
     router.use('/customer', auth, backend.routes(), backend.allowedMethods());
     router.use('/api', Oauth, apiRou.routes(), apiRou.allowedMethods());

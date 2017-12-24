@@ -20,7 +20,7 @@ body {
 	background: #76C7C0;
 }
 .header{
-	padding: 4% 0;
+	padding: 15px 0;
 }
 .logo{
 	/* margin-top: 10px; 
@@ -554,8 +554,11 @@ nav{margin:0;background:none;}.menu li{display:block;margin:0;}.menu li a{backgr
 	background: #6AB3AC;
 }
 .footer1{
-	padding: 2% 0;
+	padding: 5px 0;
 	text-align: -webkit-center;
+}
+.link {
+	margin-top: 10px;
 }
 .copy p{
 	color: #ffffff;
