@@ -2,5 +2,5 @@
 /.idea
 /public/uploads
 yarn.lock
-config/
+/config
 app2.js
