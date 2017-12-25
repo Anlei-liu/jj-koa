@@ -22,7 +22,7 @@
         <div class="main_grid1">
             <h3 class="style pull-left">产品中心</h3>
             <ol class="breadcrumb pull-right">
-                <li><a href="index.html">首页</a></li>
+                <li><a href="/">首页</a></li>
                 <li class="active">产品中心</li>
             </ol>
             <div class="clearfix"></div>
@@ -32,7 +32,7 @@
 <div class="main_btm1"><!-- start main_btm -->
     <div class="container">
         <div class="portfolio_main">
-            <dl>
+            <dl id="pro0">
                 <dt>高级产品</dt>
                 <% productList.forEach(function (item) { %>
                     <% if(item.type == '高级产品') { %>
@@ -45,7 +45,7 @@
                     <% } %>
                 <% }) %>
             </dl>
-            <dl>
+            <dl id="pro1">
                 <dt>人气产品</dt>
                 <% productList.forEach(function (item) { %>
                 <% if(item.type == '人气产品') { %>
@@ -58,7 +58,7 @@
                 <% } %>
                 <% }) %>
             </dl>
-            <dl>
+            <dl id="pro2">
                 <dt>主题产品</dt>
                 <% productList.forEach(function (item) { %>
                 <% if(item.type == '主题产品') { %>
@@ -71,7 +71,7 @@
                 <% } %>
                 <% }) %>
             </dl>
-            <dl>
+            <dl id="pro3">
                 <dt>礼盒套装</dt>
                 <% productList.forEach(function (item) { %>
                 <% if(item.type == '礼盒套装') { %>

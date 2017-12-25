@@ -26,22 +26,46 @@
                 <div class="col-md-4 company_ad">
                     <h2>联系方式 :</h2>
                     <address>
-                        <p>地址：公司位于山东省青岛市李沧区合川路48号</p>
-                        <p>电话:0532-85833450</p>
-                        <p>传真: 我忘记了</p>
-                        <p>Email: <a href="mailto:865641679@qq.com">865641679@qq.com</a></p>
+                        <p>地址：<%= company.address %></p>
+                        <p>电话:<%= company.tel %></p>
+                        <p>传真: <%= company.fax %></p>
+                        <p>Email: <a href="mailto:<%= company.email %>"><%= company.email %></a></p>
                     </address>
                 </div>
                 <div class="col-md-8">
                     <div class="contact-form">
                         <h2>联系我们</h2>
-                        <form method="post" action="contact-post.html">
-                            <input type="text" value="姓名" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '姓名';}">
-                            <input type="text" value="邮箱" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '邮箱';}">
-                            <input type="text" value="主题" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject';}">
-                            <textarea onfocus="if(this.value == 'Your Message here....') this.value='';" onblur="if(this.value == '') this.value='Your Message here....;" >请在此处留言：</textarea>
-                            <span><input type="submit" value="提 交"></span>
+                        <form>
+                            <input type="text" placeholder="姓名" name="name">
+                            <input type="text" placeholder="邮箱" name="email">
+                            <input type="text" placeholder="主题" name="theme">
+                            <textarea placeholder="详情" name="details"></textarea>
+                            <span><input type="submit" class="submit" value="提 交"></span>
                         </form>
+                        <script>
+                            $('.submit').click(function () {
+                                let data = {
+                                    name: $('[name="name"]').val(),
+                                    email: $('[name="email"]').val(),
+                                    theme: $('[name="theme"]').val(),
+                                    details: $('[name="details"]').val(),
+                                }
+
+                                $.ajax({
+                                    url: '/contact',
+                                    data: data,
+                                    type: 'POST',
+                                    success: function (res) {
+                                        if (res.code === 0) {
+                                            alert('发送成功')
+                                        }else {
+                                            alert('发送失败')
+                                        }
+                                    }
+                                })
+                                return false;
+                            })
+                        </script>
                     </div>
                 </div>
                 <div class="clearfix"></div>
