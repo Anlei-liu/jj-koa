@@ -1,10 +1,8 @@
 import { showPost } from '../../models/posts'
-import { saveContact } from '../../models/modules'
 import { queryProductAll } from "../../models/product"
 import multer from 'koa-multer';
 import oPath from 'path'
 import fs from 'fs';
-import routes from "../../routes";
 const oUpload = multer({dest: './public/uploads/'})
 /**
  * 查询文章列表
