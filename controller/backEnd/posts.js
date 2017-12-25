@@ -25,7 +25,6 @@ const renderPosts = async (ctx, next) => {
 const renderPostEdit = async (ctx, next) => {
     const id = ctx.params.id;
     let post = await queryPostOne(id);
-    console.log(post[0].title)
     await ctx.render('backEnd/postsEdit', {
         postId: post[0].id,
         postTitle: post[0].title,
@@ -50,7 +49,6 @@ const renderPostAdd = async (ctx, next) => {
 };
 
 const addPostRou = async (ctx, next) => {
-    console.log(ctx.request.body);
     const { title, type, cover, intro, details }  = ctx.request.body;
     try {
         await addPost(title, type, cover, intro, details);

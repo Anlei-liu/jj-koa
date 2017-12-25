@@ -96,7 +96,6 @@ const companyDynamics = async ctx => {
     const pagination = Math.ceil(postList.length / 4);
     const company = await queryCompany();
     postList = postList.splice((page - 1) * 4, 4);
-    console.log(postList);
     await ctx.render('company-dynamics', {
         postList: postList,
         title: '公司动态',

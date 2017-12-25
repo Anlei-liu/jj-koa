@@ -1,5 +1,5 @@
 import query from '../config/db_config'
-
+import { foamtTime } from '../utils'
 /**
  * 添加文章
  * @param title  文章名称
@@ -29,19 +29,23 @@ const showPost = async (type) => {
         sql = `SELECT * FROM post`
     }
     let result = await query(sql);
+    foamtTime(result)
     result.forEach((item) => {
         if (item.type === 0) {
-            return item.type = '公司动态';
+            item.type = '公司动态';
         }else if(item.type === 1) {
-            return item.type = '料理方法';
+            item.type = '料理方法';
         }
+        return item;
     });
     return result
 };
 
 const queryPostOne = async (id) => {
     let sql = `SELECT * FROM post WHERE id='${id}'`
-    return query(sql)
+    let result = await query(sql)
+    foamtTime(result)
+    return result
 }
 
 /**

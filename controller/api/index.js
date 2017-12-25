@@ -17,7 +17,6 @@ const queryPost = async (ctx, next) => {
     let postList = await showPost(null);
     const len = postList.length;
     let _result = {};
-    console.log(postList)
     if (len > 0) {
         postList = postList.splice((page - 1) * limit, limit);
         _result = {
@@ -42,7 +41,6 @@ const upload = async (ctx, next) => {
     const reader = fs.createReadStream(oPath.join(`./${path}`));
     const stream = fs.createWriteStream(oPath.join(`./public/uploads/${originalname}`));
     reader.pipe(stream);
-    console.log('uploading %s -> %s', originalname, path);
     fs.unlink(path)
     ctx.response.status = 200;
     ctx.response.body = {
