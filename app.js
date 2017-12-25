@@ -5,7 +5,8 @@ import path from 'path'
 import router from './routes'
 import koaBodyParse from 'koa-bodyparser'
 import session from 'koa-session-minimal'
-
+import dotenv from 'dotenv';
+dotenv.config();
 const app = new Koa();
 const route = router(app);
 
@@ -14,7 +15,7 @@ app.use(koaBodyParse());
 app.use(session({
     key: 'session-id',
     cookie: {
-        domain: '127.0.0.1',
+        domain: process.env.HOST_NAME,
         path: '/',
         maxAge: 1000 * 1000 * 30,
         httpOnly: true,
@@ -32,7 +33,7 @@ app
 app
     .use(route.routes(), route.allowedMethods());
 
-app.listen('8080', () => {
+app.listen(process.env.PORT, () => {
     console.log('listen 127.0.0.1:8080');
 });
 
