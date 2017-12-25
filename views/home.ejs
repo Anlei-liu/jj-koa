@@ -1,25 +1,5 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>首页</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css'/>
-    <link href="/static/css/bootstrap.css" rel='stylesheet' type='text/css'/>
-    <link href="/static/css/blue.css" rel="stylesheet" type="text/css" media="all"/>
-    <!----font-Awesome----->
-    <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
-    <!----font-Awesome----->
-    <!-- start plugins -->
-    <script type="application/x-javascript"> addEventListener("load", function () {
-            setTimeout(function(){
-                window.scrollTo(0, 1);
-            }, 0);
-        }, false);
-    </script>
-    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
-    <!--start slider -->
+<% include common/head.ejs %>
+
     <link rel="stylesheet" href="/static/css/fwslider.css" media="all">
     <script src="/static/js/jquery-ui.min.js"></script>
     <script src="/static/js/css3-mediaqueries.js"></script>
@@ -182,8 +162,6 @@
 
         });
     </script>
-</head>
-<body>
 <% include common/header %>
 <div id="fwslider"><!-- start slider -->
     <div class="slider_container">
