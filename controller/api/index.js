@@ -47,8 +47,10 @@ const upload = async (ctx, next) => {
     ctx.response.status = 200;
     ctx.response.body = {
         code: 0,
+        errno: 0,
         msg: 'success',
-        url: `${ctx.origin}/uploads/${originalname}`
+        url: `${ctx.origin}/uploads/${originalname}`,
+        data:[`${ctx.origin}/uploads/${originalname}`],
     }
 };
 

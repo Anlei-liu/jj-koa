@@ -33,7 +33,9 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">文章内容</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" class="layui-textarea" name="details"><%= postDetails %></textarea>
+                <div id="editor">
+                    <%- postDetails %>
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
@@ -43,20 +45,27 @@
             </div>
         </div>
     </form>
+    <script type="text/javascript" src="/static/waEditor/wangEditor.min.js"></script>
     <script>
         layui.use(['form', 'jquery'], function(){
             var form = layui.form,
                 $ = layui.jquery;
+
+            var E = window.wangEditor;
+            var editor = new E('#editor');
+            editor.customConfig.pasteFilterStyle = false
+            editor.customConfig.uploadFileName = 'file'
+            editor.customConfig.uploadImgServer = '/api/upload'
+            editor.create()
+
             form.on('submit(*)', function(data){
-                console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
-                console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
-                console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+                data.field.details = editor.txt.html()
                 var params = {
                     url:'/customer/post/add',
                     type:'POST',
                     data: data.field,
                 }
-                if ($("[name='id']") > 0) {
+                if ($("[name='id']").val() > 0) {
                     params = {
                         url:'/customer/post',
                         type:'put',
