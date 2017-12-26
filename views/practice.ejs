@@ -14,24 +14,22 @@
 </div>
 <div class="main_btm1"><!-- start main_btm -->
     <div class="container">
-        <div class="technology">
+        <div class="technology_main">
             <% postList.forEach(function (item) { %>
-                <div class="technology_list col-md-6">
-                    <h4>
-                        <%= item.title %>
-                        <p class="h5"><%= item.time %></p>
-                    </h4>
-                    <div class="tech_para">
-                        <p class="para"><%= item.intro %></p>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="read_btn">
-                        <a href="/content/<%= item.id %>" class="btn">查看详情</a>
-                    </div>
+            <div class="technology_list col-md-6">
+                <h4><%= item.title %><p class="h5"><%= item.time %></p></h4>
+                <div class="tech_para">
+                    <p class="para"><%= item.intro %></p>
                 </div>
+                <div class="/static//static//static/images_1_of_4 bg1 pull-right">
+                    <img src="<%= item.cover %>">
+                </div>
+                <div class="clearfix"></div>
+                <div class="read_btn">
+                    <a href="/content/<%= item.id %>" class="btn">查看详情</a>
+                </div>
+            </div>
             <% }) %>
-            <div class="clearfix"></div>
-            <% include components/pagination.ejs %>
         </div>
     </div>
     <style>
