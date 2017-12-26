@@ -47,8 +47,8 @@ const upload = async (ctx, next) => {
         code: 0,
         errno: 0,
         msg: 'success',
-        url: `${process.env.DB_HOST}/uploads/${originalname}`,
-        data:[`${process.env.DB_HOST}/uploads/${originalname}`],
+        url: `${process.env.HOST_NAME}/uploads/${originalname}`,
+        data:[`${process.env.HOST_NAME}/uploads/${originalname}`],
     }
 };
 
