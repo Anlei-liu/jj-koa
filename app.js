@@ -24,7 +24,7 @@ app.use(session({
     }
 }))
 
-app.use(cache(path.join(process.env.HOST_NAME, 'public'), {
+app.use(cache(path.join(__dirname, '/public'), {
     maxAge: 365 * 24 * 60 * 60
 }))
 
