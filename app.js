@@ -6,6 +6,7 @@ import router from './routes'
 import koaBodyParse from 'koa-bodyparser'
 import session from 'koa-session-minimal'
 import dotenv from 'dotenv';
+import cache from 'koa-static-cache'
 dotenv.config();
 const app = new Koa();
 const route = router(app);
@@ -21,6 +22,10 @@ app.use(session({
         httpOnly: true,
         overwrite: false
     }
+}))
+
+app.use(cache(path.join(process.env.HOST_NAME, 'public'), {
+    maxAge: 365 * 24 * 60 * 60
 }))
 
 app.use(serve(__dirname + '/public'));
