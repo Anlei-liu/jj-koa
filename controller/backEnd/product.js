@@ -26,7 +26,6 @@ const productAdd = async (ctx, next) => {
 };
 
 const saveProduct = async (ctx, next) => {
-    console.log(ctx.request.body)
     const { title, cover, type } = ctx.request.body
     await addProduct(title, cover, type)
     ctx.response.status = 200;
@@ -38,7 +37,6 @@ const saveProduct = async (ctx, next) => {
 
 const delProductRou = async (ctx, next) => {
     const { id }  = ctx.request.body;
-    console.log(id)
     try {
         await delProduct(id);
         ctx.response.status = 200;

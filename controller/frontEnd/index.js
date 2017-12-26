@@ -21,7 +21,7 @@ const home = async ctx => {
     await ctx.render('home', {
         postList: postList,
         company: company[0],
-        title: '123123'
+        title: '主页'
     })
 };
 
@@ -56,7 +56,7 @@ const practice = async ctx => {
 const contact = async ctx => {
     const company = await queryCompany();
     await ctx.render('contact', {
-        title: 'contact',
+        title: '联系我们',
         company:company[0]
     })
 }
@@ -82,7 +82,7 @@ const saveContactRot = async (ctx, next) => {
 const companyProfile = async ctx => {
     const company = await queryCompany();
     await ctx.render('company-profile', {
-        title: '123123',
+        title: '公司简介',
         company:company[0]
     })
 }
@@ -96,7 +96,6 @@ const companyDynamics = async ctx => {
     const pagination = Math.ceil(postList.length / 4);
     const company = await queryCompany();
     postList = postList.splice((page - 1) * 4, 4);
-    console.log(postList);
     await ctx.render('company-dynamics', {
         postList: postList,
         title: '公司动态',
@@ -109,7 +108,7 @@ const companyDynamics = async ctx => {
 const fishCake = async ctx => {
     const company = await queryCompany();
     await ctx.render('fish-cake', {
-        title: '123123',
+        title: '鱼饼简介',
         company:company[0]
     })
 }
@@ -121,7 +120,7 @@ const content = async ctx => {
     result = result[0];
     await ctx.render('content', {
         result: result,
-        title: 'details',
+        title: '文章详情',
         company:company[0]
     })
 }

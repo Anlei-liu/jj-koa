@@ -1,5 +1,5 @@
 import query from "../config/db_config";
-
+import { foamtTime } from '../utils'
 const addProduct = async (title, cover, type) => {
     let sql = `INSERT INTO product(cover, title, type) VALUES(?, ?, ?)`;
     let params = [cover, title, type];
@@ -43,12 +43,14 @@ const queryProductAll = async (type) => {
         sql = `SELECT * FROM product`;
     }
     let result = await query(sql);
+    foamtTime(result)
     return changeType(result)
 };
 
 const queryProductOne = async (id) => {
     let sql = `SELECT * FROM product WHERE id='${id}'`;
     let result = await query(sql)
+    foamtTime(result)
     return changeType(result)
 };
 
