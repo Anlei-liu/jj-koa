@@ -45,23 +45,26 @@ header {
 }
 
 /* table 样式 */
-table {
+.details p {
+    font-size: 14px;
+}
+.details table {
     border-top: 1px solid #ccc;
     border-left: 1px solid #ccc;
 }
-table td,
-table th {
+.details table td,
+.details table th {
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
     padding: 3px 5px;
 }
-table th {
+.details table th {
     border-bottom: 2px solid #ccc;
     text-align: center;
 }
 
 /* blockquote 样式 */
-blockquote {
+.details blockquote {
     display: block;
     border-left: 8px solid #d0e5f2;
     padding: 5px 10px;
@@ -72,7 +75,7 @@ blockquote {
 }
 
 /* code 样式 */
-code {
+.details code {
     display: inline-block;
     *display: inline;
     *zoom: 1;
@@ -81,11 +84,11 @@ code {
     padding: 3px 5px;
     margin: 0 3px;
 }
-pre code {
+.details pre code {
     display: block;
 }
 
 /* ul ol 样式 */
-ul, ol {
+.details ul, ol {
     margin: 10px 0 10px 20px;
 }
