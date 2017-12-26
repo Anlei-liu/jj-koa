@@ -1,5 +1,5 @@
 import { showPost, queryPostOne } from "../../models/posts"
-import { queryProductAll } from "../../models/product"
+import { queryProductAll, queryCategories } from "../../models/product"
 import { saveContact } from '../../models/modules'
 import { queryCompany } from '../../models/manage'
 function objectSort(property, desc) { //降序排列
@@ -16,12 +16,14 @@ function objectSort(property, desc) { //降序排列
 const home = async ctx => {
     let postList = await showPost(0);
     const company = await queryCompany();
+    const categories = await queryCategories();
     postList = postList.sort(objectSort('id', true))
     postList = postList.splice(0, 5);
     await ctx.render('home', {
         postList: postList,
         company: company[0],
-        title: '主页'
+        title: '主页',
+        categories:categories[0]
     })
 };
 

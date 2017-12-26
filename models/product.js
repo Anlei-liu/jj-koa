@@ -1,5 +1,17 @@
 import query from "../config/db_config";
 import { foamtTime } from '../utils'
+
+//categories
+
+`CREATE TABLE jj.categories ( 
+            id INT NOT NULL AUTO_INCREMENT , 
+            popularity VARCHAR(1000) NOT NULL , 
+            theme VARCHAR(1000) NOT NULL , 
+            advanced VARCHAR(1000) NOT NULL ,
+            giftBox VARCHAR(1000) NOT NULL , 
+            PRIMARY KEY (id)
+            ) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_bin;`;
+
 const addProduct = async (title, cover, type) => {
     let sql = `INSERT INTO product(cover, title, type) VALUES(?, ?, ?)`;
     let params = [cover, title, type];
@@ -54,10 +66,22 @@ const queryProductOne = async (id) => {
     return changeType(result)
 };
 
+const updateCategories =async(popularity, theme, advanced, giftBox) => {
+    const sql = `UPDATE categories SET popularity=${popularity},theme=${theme},advanced=${advanced},giftBox=${giftBox} WHERE 1`;
+    return await query(sql)
+}
+
+const queryCategories = async () => {
+    const sql = `SELECT * FROM categories WHERE 1`;
+    return await query(sql)
+}
+
 export {
     addProduct,
     delProduct,
     updateProduct,
     queryProductAll,
-    queryProductOne
+    queryProductOne,
+    updateCategories,
+    queryCategories,
 }
