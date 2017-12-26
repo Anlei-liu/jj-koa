@@ -3,6 +3,8 @@ import { queryProductAll } from "../../models/product"
 import multer from 'koa-multer';
 import oPath from 'path'
 import fs from 'fs';
+import dotenv from 'dotenv'
+dotenv.config();
 const oUpload = multer({dest: './public/uploads/'})
 /**
  * 查询文章列表
@@ -45,8 +47,8 @@ const upload = async (ctx, next) => {
         code: 0,
         errno: 0,
         msg: 'success',
-        url: `${ctx.origin}/uploads/${originalname}`,
-        data:[`${ctx.origin}/uploads/${originalname}`],
+        url: `${process.env.DB_HOST}/uploads/${originalname}`,
+        data:[`${process.env.DB_HOST}/uploads/${originalname}`],
     }
 };
 
