@@ -5,7 +5,7 @@
     <ul class="layui-nav nav" lay-filter="">
         <li class="layui-nav-item"><a href="/customer/manage/company">管理</a></li>
         <li class="layui-nav-item"><a href="/customer/page/home">页面</a></li>
-        <li class="layui-nav-item layui-this"><a href="/customer/posts">文章</a></li>
+        <li class="layui-nav-item"><a href="/customer/posts">文章</a></li>
         <li class="layui-nav-item"><a href="/customer/product/list">产品</a></li>
         <li class="layui-nav-item"><a href="/customer/module/slider">模块</a></li>
     </ul>
@@ -22,10 +22,14 @@
 
 <script>
     //注意：导航 依赖 element 模块，否则无法进行功能性操作
-    layui.use('element', function(){
-        var element = layui.element;
-
-        //…
+    layui.use(['element', 'jquery'], function(){
+        var element = layui.element,
+            $ = layui.jquery;
+        $('.nav li a, .layui-nav-tree li a').each(function (item) {
+            if (location.pathname === $(this).attr("href")) {
+                $(this).parent().addClass('layui-this');
+            }
+        })
     });
 </script>
 <div class="container">

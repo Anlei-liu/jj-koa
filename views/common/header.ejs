@@ -8,7 +8,7 @@
                 <a id="touch-menu" class="mobile-menu" href="#">Menu</a>
                 <nav>
                     <ul class="menu list-unstyled">
-                        <li class="activate"><a href="/">首页</a></li>
+                        <li><a href="/">首页</a></li>
                         <li><a href="#">关于我们</a>
                             <ul class="sub-menu list-unstyled">
                                 <li><a href="/company-profile">公司简介</a></li>
@@ -32,4 +32,11 @@
             <div class="clearfix"></div>
         </div>
     </div>
+    <script>
+        $('.menu li a').each(function (item) {
+            if (location.pathname === $(this).attr("href")) {
+                $(this).parent().addClass('activate');
+            }
+        })
+    </script>
 </div>

@@ -1,0 +1,61 @@
+<% include common/header.ejs %>
+<% include common/head.ejs %>
+<% include common/productSideBar.ejs %>
+<div class="content">
+    <form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">人气产品</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入简介" name="popularity" class="layui-textarea"><%= categories.popularity %></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">主题产品</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入简介" name="theme" class="layui-textarea"><%= categories.theme %></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">高级产品</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入简介" name="advanced" class="layui-textarea"><%= categories.advanced %></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">礼盒产品</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入简介" name="giftBox" class="layui-textarea"><%= categories.giftBox %></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn submit" lay-submit lay-filter="*">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        layui.use(['form', 'jquery'], function(){
+            var form = layui.form,
+                $ = layui.jquery;
+            form.on('submit(*)', function(data){
+                console.log(data.field)
+                $.ajax({
+                    url:'/customer/product/categories',
+                    type:'POST',
+                    data: data.field,
+                    success: function (res) {
+                        if (res.code === 0) {
+                            alert('保存成功');
+                        }else {
+                            alert('保存失败');
+                        }
+                    }
+                })
+                return false;
+            });
+        });
+    </script>
+</div>
+<% include common/footer.ejs %>

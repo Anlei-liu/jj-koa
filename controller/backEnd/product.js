@@ -1,7 +1,9 @@
 import {
     addProduct,
     delProduct,
-    queryProductOne
+    queryProductOne,
+    updateCategories,
+    queryCategories
 } from "../../models/product"
 /**
  * 渲染文章列表页
@@ -61,6 +63,24 @@ const productEdit = async (ctx, next) => {
     })
 }
 
+const categories = async(ctx, next) => {
+    const result = await queryCategories();
+    await ctx.render('backEnd/product-categories-intro', {
+        title: 'edit categories',
+        categories: result[0],
+    })
+}
+
+const upCategories = async(ctx, next) => {
+    const { popularity, theme, advanced, giftBox } = ctx.request.body
+    await updateCategories(popularity, theme, advanced, giftBox);
+    ctx.response.status = 200;
+    ctx.response.body = {
+        code: 0,
+        msg:'success'
+    }
+}
+
 export default (router) => {
     router
         .get('/product/list', renderProduct)
@@ -68,4 +88,6 @@ export default (router) => {
         .get('/product/add', productAdd)
         .post('/product/add', saveProduct)
         .get('/product/edit/:id', productEdit)
+        .get('/product/categories', categories)
+        .post('/product/categories', upCategories)
 }
