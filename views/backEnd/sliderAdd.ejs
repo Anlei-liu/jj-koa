@@ -1,0 +1,110 @@
+<% include common/header.ejs %>
+<% include common/head.ejs %>
+<% include common/moduleSideBar.ejs %>
+<div class="content">
+    <style>
+        fieldset {
+            border: 0;
+            outline: 0;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    <form class="layui-form">
+        <input type="hidden" name="type" value="<%= pType %>">
+        <input type="hidden" name="id" value="<%= id %>">
+        <fieldset class="type4">
+            <div class="layui-form-item">
+                <label class="layui-form-label">主标题</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mainTitle" value="<%= slide.mainTitle %>" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="type0">
+            <div class="layui-form-item">
+                <label class="layui-form-label">副标题</label>
+                <div class="layui-input-block">
+                    <input type="text" name="subTitle" value="<%= slide.subTitle %>" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </fieldset>
+        <div class="layui-form-item">
+            <label class="layui-form-label">背景图</label>
+            <div class="layui-input-block">
+                <% include common/upload.ejs %>
+            </div>
+        </div>
+        <fieldset class="type2">
+            <div class="layui-form-item">
+                <label class="layui-form-label">视频</label>
+                <div class="layui-input-block">
+                    <% include common/uploadVideo.ejs %>
+                </div>
+            </div>
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form','jquery'], function(){
+        var form = layui.form,
+            $ = layui.jquery;
+        var type = parseInt($('[name="type"]').val());
+        if(type === 0) {
+            $('.type2').hide()
+        }else if(type === 1) {
+            $('.type4').hide()
+            $('.type0').hide()
+            $('.type2').hide()
+        }
+        else if(type === 2) {
+            $('.type0').hide()
+        }
+        else if(type === 3) {
+            $('.type4').hide()
+            $('.type0').hide()
+            $('.type2').hide()
+        }
+        form.on('submit(*)', function(data){
+            if ($('[name="id"]').val()) {
+                $.ajax({
+                    url: '/customer/module/slider/add',
+                    type: 'PUT',
+                    data: data.field,
+                    success: function (res) {
+                        if (res.code == 0) {
+                            alert('保存成功');
+                            location.href('/customer/module/slider')
+                        }else {
+                            alert('保存失败');
+                        }
+                    }
+                })
+            }else {
+                $.ajax({
+                    url: '/customer/module/slider/add',
+                    type: 'POST',
+                    data: data.field,
+                    success: function (res) {
+                        if (res.code == 0) {
+                            alert('保存成功');
+                            location.href('/customer/module/slider')
+                        }else {
+                            alert('保存失败');
+                        }
+                    }
+                })
+            }
+
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+    });
+
+</script>
+<% include common/footer.ejs %>

@@ -2,6 +2,169 @@
 <% include common/head.ejs %>
 <% include common/moduleSideBar.ejs %>
 <div class="content">
-
+    <style>
+        .cz {
+            margin-bottom: 15px;
+        }
+        h4 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+    </style>
+    <div class="banner">
+        <h4>主页幻灯片</h4>
+        <div class="cz">
+            <a href="/customer/module/slider/add/0" class="layui-btn bannerAdd">
+                <i class="layui-icon">&#xe608;</i> 添加轮播
+            </a>
+        </div>
+        <div class="sliderList">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>主标题</th>
+                    <th>副标题</th>
+                    <th>背景图</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% slider1.forEach(function (item) { %>
+                       <tr>
+                           <td><%= item.id %></td>
+                           <td><%= item.mainTitle %></td>
+                           <td><%= item.subTitle %></td>
+                           <td><img style="max-width: 60px; max-height: 60px" src="<%= item.cover %>" alt=""></td>
+                           <td data-id="<%= item.id %>">
+                               <a href="/customer/module/slider/add/0/<%= item.id %>" class="layui-btn layui-btn-sm layui-btn-mini edit">编辑</a>
+                               <a class="layui-btn layui-btn-sm layui-btn-danger layui-btn-mini del">删除</a>
+                           </td>
+                       </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="banner">
+        <h4>产品轮播</h4>
+        <div class="cz">
+            <a href="/customer/module/slider/add/1" class="layui-btn bannerAdd">
+                <i class="layui-icon">&#xe608;</i> 添加轮播
+            </a>
+        </div>
+        <div class="sliderList">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>背景图</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% slider2.forEach(function (item) { %>
+                        <tr>
+                            <td><%= item.id %></td>
+                            <td><img style="max-width: 60px; max-height: 60px" src="<%= item.cover %>" alt=""></td>
+                            <td data-id="<%= item.id %>">
+                                <a href="/customer/module/slider/add/1/<%= item.id %>" class="layui-btn layui-btn-sm layui-btn-mini edit">编辑</a>
+                                <a class="layui-btn layui-btn-sm layui-btn-danger layui-btn-mini del">删除</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="banner">
+        <h4>视频中心</h4>
+        <div class="cz">
+            <a href="/customer/module/slider/add/2" class="layui-btn bannerAdd">
+                <i class="layui-icon">&#xe608;</i> 添加轮播
+            </a>
+        </div>
+        <div class="sliderList">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>背景图</th>
+                    <th>视频</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% slider3.forEach(function (item) { %>
+                <tr>
+                    <td><%= item.id %></td>
+                    <td><img style="max-width: 60px; max-height: 60px" src="<%= item.cover %>" alt=""></td>
+                    <td><video style="max-height: 100px;max-width: 100px;" src="<%= item.video %>" preload="metadata"></video></td>
+                    <td data-id="<%= item.id %>">
+                        <a href="/customer/module/slider/add/2/<%= item.id %>" class="layui-btn layui-btn-sm layui-btn-mini edit">编辑</a>
+                        <a class="layui-btn layui-btn-sm layui-btn-danger layui-btn-mini del">删除</a>
+                    </td>
+                </tr>
+                <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="banner">
+        <h4>我们的团队</h4>
+        <div class="cz">
+            <a href="/customer/module/slider/add/3" class="layui-btn bannerAdd">
+                <i class="layui-icon">&#xe608;</i> 添加轮播
+            </a>
+        </div>
+        <div class="sliderList">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>背景图</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% slider4.forEach(function (item) { %>
+                        <tr>
+                            <td><%= item.id %></td>
+                            <td><img style="max-width: 60px; max-height: 60px" src="<%= item.cover %>" alt=""></td>
+                            <td data-id="<%= item.id %>">
+                                <a href="/customer/module/slider/add/3/<%= item.id %>" class="layui-btn layui-btn-sm layui-btn-mini edit">编辑</a>
+                                <a class="layui-btn layui-btn-sm layui-btn-danger layui-btn-mini del">删除</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        layui.use(['layer', 'jquery'], function(){
+            var layer = layui.layer,
+                $ = layui.jquery;
+            $('.del').click(function () {
+                var id = $(this).parent().data('id');
+                var item = $(this).parents('tr');
+                $.ajax({
+                    url:'/customer/module/slider',
+                    type:'DELETE',
+                    data: {
+                        id: id
+                    },
+                    success: function (res) {
+                        if (res.code === 0) {
+                            item.remove();
+                            alert('删除成功');
+                        }else {
+                            alert('删除失败');
+                        }
+                    }
+                })
+            })
+        });
+    </script>
 </div>
 <% include common/footer.ejs %>

@@ -162,37 +162,35 @@
 
         });
     </script>
+<style>
+    .sp {
+        width: 250px;
+        max-height: 250px;
+    }
+</style>
 <% include common/header %>
 <div id="fwslider"><!-- start slider -->
     <div class="slider_container">
+        <% slider1.forEach(function (item) { %>
         <div class="slide">
             <!-- Slide image -->
-            <img src="/static/images/slider1.jpg">
+            <div style="position: absolute;left: 0;top: 0;width: 100%;height: 100%; background-image: url('<%= item.cover %>');background-size: cover;background-position: center center;"></div>
+            <img style="max-height: 600px; visibility: hidden" src="<%= item.cover %>">
             <!-- /Slide image -->
             <!-- Texts container -->
             <div class="slide_content">
                 <div class="slide_content_wrap">
                     <!-- Text title -->
-                    <h4 class="title">极致美味，无与伦比</h4>
+                    <h4 class="title"><%= item.mainTitle %></h4>
                     <!-- /Text title -->
                     <!-- Text description -->
-                    <p class="description">层层工艺精心打造，为您带来舌尖上的极致美味</p>
+                    <p class="description"><%= item.subTitle %></p>
                     <!-- /Text description -->
                 </div>
             </div>
             <!-- /Texts container -->
         </div>
-        <!-- /Duplicate to create more slides -->
-        <div class="slide">
-            <img src="/static/images/slider2.jpg">
-            <div class="slide_content">
-                <div class="slide_content_wrap">
-                    <h4 class="title">您想要的，就是三湖要做的</h4>
-                    <p class="description">三湖食品秉着客户至上的原则以服务客户为己任</p>
-                </div>
-            </div>
-        </div>
-        <!--/slide -->
+        <% }) %>
     </div>
     <div class="timers"></div>
     <div class="slidePrev"><span></span></div>
@@ -270,15 +268,9 @@
                 <div class="myloader"></div>
                 <!-- CONTENT -->
                 <ul class="allinone_carousel_list">
-                    <li><img src="/static/images/slider_pic1.jpg" alt="" class="img-responsive"/></li>
-                    <li><img src="/static/images/slider_pic2.jpg" alt="" class="img-responsive"/></li>
-                    <li><img src="/static/images/slider_pic3.jpg" alt="" class="img-responsive"/></li>
-                    <li><img src="/static/images/slider_pic4.jpg" alt="" class="img-responsive"/></li>
-                    <li><img src="/static/images/slider_pic5.jpg" alt="" class="img-responsive"/></li>
-                    <li><img src="/static/images/slider_pic3.jpg" alt="" class="img-responsive"/></li>
-                    <li><img src="/static/images/slider_pic4.jpg" alt="" class="img-responsive"/></li>
-                    <li><img src="/static/images/slider_pic5.jpg" alt="" class="img-responsive"/></li>
-
+                    <% slider2.forEach(function (item) { %>
+                        <li><img src="<%= item.cover %>" alt="" class="img-responsive"/></li>
+                    <% }) %>
                 </ul>
             </div>
         </div>
@@ -314,84 +306,16 @@
                 <h4>视频中心<span class="line"></span></h4>
             </div>
             <div id="owl-demo" class="owl-carousel"><!----start-img-cursual---->
-                <div class="item">
+                <% slider3.forEach(function (item) { %>
+                    <div class="item">
                     <div class="cau_left">
-                        <img class="sp" src="/static/images/shipin.jpg" width="250" alt="shipin">
-                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;">《手工鱼丸生产过程》 2017.01.06</p>
+                        <a target="_blank" href="<%= item.video %>">
+                            <img class="sp" src="<%= item.cover %>" data-video="<%= item.video %>" width="250" alt="shipin">
+                        </a>
+                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;"><%= item.mainTitle %> <%= item.time %></p>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="cau_left">
-                        <img class="sp" src="/static/images/shipin.jpg" width="250" alt="shipin">
-                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;">《手工鱼丸生产过程》 2017.01.06</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="cau_left">
-                        <img class="sp" src="/static/images/shipin.jpg" width="250" alt="shipin">
-                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;">《手工鱼丸生产过程》 2017.01.06</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="cau_left">
-                        <img class="sp" src="/static/images/shipin.jpg" width="250" alt="shipin">
-                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;">《手工鱼丸生产过程》 2017.01.06</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="cau_left">
-                        <img class="sp" src="/static/images/shipin.jpg" width="250" alt="shipin">
-                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;">《手工鱼丸生产过程》 2017.01.06</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="cau_left">
-                        <img class="sp" src="/static/images/shipin.jpg" width="250" alt="shipin">
-                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;">《手工鱼丸生产过程》 2017.01.06</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="cau_left">
-                        <img class="sp" src="/static/images/shipin.jpg" width="250" alt="shipin">
-                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;">《手工鱼丸生产过程》 2017.01.06</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="cau_left">
-                        <img class="sp" src="/static/images/shipin.jpg" width="250" alt="shipin">
-                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;">《手工鱼丸生产过程》 2017.01.06</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="cau_left">
-                        <img class="sp" src="/static/images/shipin.jpg" width="250" alt="shipin">
-                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;">《手工鱼丸生产过程》 2017.01.06</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="cau_left">
-                        <img class="sp" src="/static/images/shipin.jpg" width="250" alt="shipin">
-                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;">《手工鱼丸生产过程》 2017.01.06</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="cau_left">
-                        <img class="sp" src="/static/images/shipin.jpg" width="250" alt="shipin">
-                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;">《手工鱼丸生产过程》 2017.01.06</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="cau_left">
-                        <img class="sp" src="/static/images/shipin.jpg" width="250" alt="shipin">
-                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;">《手工鱼丸生产过程》 2017.01.06</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="cau_left">
-                        <img class="sp" src="/static/images/shipin.jpg" width="250" alt="shipin">
-                        <p class="h4" style="background-color:#666; color:#FFF; width:250px;">《手工鱼丸生产过程》 2017.01.06</p>
-                    </div>
-                </div>
+                <% }) %>
             </div><!----//End-img-cursual---->
         </div>
     </div>

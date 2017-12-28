@@ -6,7 +6,6 @@ import {
     admin,
     posts,
     api,
-    homeEdit,
     productList,
     module,
     manage
@@ -44,7 +43,6 @@ export default () => {
     api(apiRou);
 
     posts(backend);
-    homeEdit(backend);
     productList(backend);
     module(backend);
     manage(backend);
