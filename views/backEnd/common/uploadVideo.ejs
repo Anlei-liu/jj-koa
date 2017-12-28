@@ -14,7 +14,7 @@
             var uploadInst = upload.render({
                 elem: '#test2'
                 ,url: '/api/upload/',
-                accept: 'file'
+                accept: 'video'
                 ,before: function(obj){
                     obj.preview(function(index, file, result){
                         $('.video-view').attr('src', result);
