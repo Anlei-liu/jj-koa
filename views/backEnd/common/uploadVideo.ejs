@@ -1,8 +1,8 @@
 <div class="layui-upload">
-    <button type="button" class="layui-btn" id="test1">上传图片</button>
-    <input type="hidden" name="cover" value="<%= image %>" lay-verify="required">
+    <button type="button" class="layui-btn" id="test2">上传视频</button>
+    <input type="hidden" name="video" value="<%= video %>">
     <div class="layui-upload-list">
-        <img class="layui-upload-img" id="preview" src="<%= image %>">
+        <video class="layui-upload-img video-view" src="<%= video %>"></video>
         <p id="demoText"></p>
     </div>
     <script>
@@ -12,18 +12,19 @@
 
             //执行实例
             var uploadInst = upload.render({
-                elem: '#test1'
-                ,url: '/api/upload/'
+                elem: '#test2'
+                ,url: '/api/upload/',
+                accept: 'file'
                 ,before: function(obj){
                     obj.preview(function(index, file, result){
-                        $('#preview').attr('src', result);
+                        $('.video-view').attr('src', result);
                     });
                 }
                 ,done: function(res){
                     if(res.code > 0){
                         return layer.msg('上传失败');
                     }
-                    $('[name="cover"]').val(res.url);
+                    $('[name="video"]').val(res.url);
                 }
                 ,error: function(){
                     //演示失败状态，并实现重传

@@ -122,6 +122,12 @@
 
         });
     </script>
+<style>
+    .lazyOwl {
+        max-width: 120px;
+        max-height: 120px;
+    }
+</style>
 <% include common/header %>
 <div class="main_bg"><!-- start main -->
     <div class="container">
@@ -143,13 +149,9 @@
             <div class="col-md-3 span1_of_3">
                 <h4>为何选择三湖</h4>
                 <ul class="list-unstyled nav_list">
-                    <li><a href="single-page.html">严谨的生产工艺</a></li>
-                    <li><a href="single-page.html">原材料</a></li>
-                    <li><a href="single-page.html">显示技术实力的文章标题文字</a></li>
-                    <li><a href="single-page.html">显示技术实力的文章标题文字显示技术</a></li>
-                    <li><a href="single-page.html">显示技术实力的文章标题文字</a></li>
-                    <li><a href="single-page.html">显示技术实力的文章标题文字显示技术实力的文章标题文字</a></li>
-                    <li><a href="single-page.html">显示技术实力的文章标题文字</a></li>
+                    <% posts.forEach(function (post) { %>
+                        <li><a href="/content/<%= post.id %>"><%= post.title %></a></li>
+                    <% }) %>
                 </ul>
             </div>
             <div class="col-md-3 span1_of_3">
@@ -174,71 +176,13 @@
             <h4>我们的团队<span class="line"></span></h4>
         </div>
         <div id="owl-demo" class="owl-carousel"><!----start-img-cursual---->
-            <div class="item">
-                <div class="cau_left">
-                    <img class="lazyOwl" data-src="./static/images/c1.png" alt="Lazy Owl Image">
+            <% slider4.forEach(function (item) { %>
+                <div class="item">
+                    <div class="cau_left">
+                        <img class="lazyOwl" data-src="<%= item.cover %>" alt="Lazy Owl Image">
+                    </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="cau_left">
-                    <img class="lazyOwl" data-src="./static/images/c2.png" alt="Lazy Owl Image">
-                </div>
-            </div>
-            <div class="item">
-                <div class="cau_left">
-                    <img class="lazyOwl" data-src="./static/images/c3.png" alt="Lazy Owl Image">
-                </div>
-            </div>
-            <div class="item">
-                <div class="cau_left">
-                    <img class="lazyOwl" data-src="./static/images/c1.png" alt="Lazy Owl Image">
-                </div>
-            </div>
-            <div class="item">
-                <div class="cau_left">
-                    <img class="lazyOwl" data-src="./static/images/c2.png" alt="Lazy Owl Image">
-                </div>
-            </div>
-            <div class="item">
-                <div class="cau_left">
-                    <img class="lazyOwl" data-src="./static/images/c3.png" alt="Lazy Owl Image">
-                </div>
-            </div>
-            <div class="item">
-                <div class="cau_left">
-                    <img class="lazyOwl" data-src="./static/images/c1.png" alt="Lazy Owl Image">
-                </div>
-            </div>
-            <div class="item">
-                <div class="cau_left">
-                    <img class="lazyOwl" data-src="./static/images/c4.png" alt="Lazy Owl Image">
-                </div>
-            </div>
-            <div class="item">
-                <div class="cau_left">
-                    <img class="lazyOwl" data-src="./static/images/c1.png" alt="Lazy Owl Image">
-                </div>
-            </div>
-            <div class="item">
-                <div class="cau_left">
-                    <img class="lazyOwl" data-src="./static/images/c2.png" alt="Lazy Owl Image">
-                </div>
-            </div>
-            <div class="item">
-                <div class="cau_left">
-                    <img class="lazyOwl" data-src="./static/images/c3.png" alt="Lazy Owl Image">
-                </div>
-            </div>
-            <div class="item">
-                <div class="cau_left">
-                    <img class="lazyOwl" data-src="./static/images/c1.png" alt="Lazy Owl Image">
-                </div>
-            </div>
-            <div class="item">
-                <div class="cau_left">
-                    <img class="lazyOwl" data-src="./static/images/c2.png" alt="Lazy Owl Image">
-                </div>
-            </div>
+            <% }) %>
         </div><!----//End-img-cursual---->
     </div>
 </div>

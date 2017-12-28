@@ -1,7 +1,8 @@
 import { showPost, queryPostOne } from "../../models/posts"
 import { queryProductAll, queryCategories } from "../../models/product"
-import { saveContact } from '../../models/modules'
+import { saveContact, querySlide } from '../../models/modules'
 import { queryCompany } from '../../models/manage'
+import { foamtTime } from "../../utils"
 function objectSort(property, desc) { //降序排列
     if (desc) {
         return function (a, b) {
@@ -17,13 +18,20 @@ const home = async ctx => {
     let postList = await showPost(0);
     const company = await queryCompany();
     const categories = await queryCategories();
+
+    const slider1 = await querySlide(0);
+    const slider2 = await querySlide(1);
+    const slider3 = await querySlide(2);
     postList = postList.sort(objectSort('id', true))
     postList = postList.splice(0, 5);
     await ctx.render('home', {
         postList: postList,
         company: company[0],
         title: '主页',
-        categories:categories[0]
+        categories:categories[0],
+        slider1: slider1,
+        slider2: slider2,
+        slider3: slider3
     })
 };
 
@@ -42,7 +50,7 @@ const practice = async ctx => {
     if (!page) {
         page = 1;
     }
-    let postList = await showPost('1');
+    let postList = await showPost(1);
     const pagination = Math.ceil(postList.length / 4);
     postList = postList.splice((page - 1) * 4, 4);
     const company = await queryCompany();
@@ -83,9 +91,13 @@ const saveContactRot = async (ctx, next) => {
 
 const companyProfile = async ctx => {
     const company = await queryCompany();
+    const slider4 = await querySlide(3);
+    const posts = await showPost(2);
     await ctx.render('company-profile', {
         title: '公司简介',
-        company:company[0]
+        company:company[0],
+        posts:posts,
+        slider4: slider4,
     })
 }
 

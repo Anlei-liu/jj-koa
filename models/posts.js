@@ -35,6 +35,8 @@ const showPost = async (type) => {
             item.type = '公司动态';
         }else if(item.type === 1) {
             item.type = '料理方法';
+        }else if (item.type === 2) {
+            item.type = '客户说';
         }
         return item;
     });
