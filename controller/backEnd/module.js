@@ -29,7 +29,7 @@ const sliderAdd = async(ctx, next) => {
         opt = await querySlideOne(id)
         opt = opt[0];
     }
-    await ctx.render('backEnd/SliderAdd',{
+    await ctx.render('backEnd/sliderAdd',{
         title: '添加轮播',
         id: id ? id : '',
         image: id ? opt.cover : '',
