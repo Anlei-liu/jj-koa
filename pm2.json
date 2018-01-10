@@ -1,0 +1,17 @@
+{
+  "name": "jj",
+  "script": "babel.js",
+  "node_args": "",
+  "cwd": "./",
+  "log_date_format": "YY-MM-DD HH:mm",
+  "error_file": "logs/app-err.log",
+  "out_file": "logs/app-out.log",
+  "max_memory_restart": "1G",
+  "watch": false,
+  "exec_mode": "cluster_mode",
+  "instances": "1",
+  "env": {
+    "NODE_ENV": "production"
+  }
+
+}
