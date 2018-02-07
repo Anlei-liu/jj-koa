@@ -31,7 +31,7 @@ const addSlide = async(mainTitle, subTitle, cover, foreignChain, video, type) =>
     let params = [];
     if (mainTitle !== '') {
         sql = `INSERT INTO slider(mainTitle, subTitle, cover, type) VALUES (?, ?, ?, ?)`
-        params = [mainTitle, subTitle, cover, 0];
+        params = [mainTitle, subTitle, cover, type];
     }else if (video !== '') {
         sql = `INSERT INTO slider(cover, video, type) VALUES (?, ?, ?)`;
         params = [cover, video, type]
