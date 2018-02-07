@@ -2,14 +2,13 @@ import Koa from 'koa'
 import views from 'koa-views'
 import serve from 'koa-static'
 import path from 'path'
-import router from './routes'
+import router from './controller'
 import koaBodyParse from 'koa-bodyparser'
 import session from 'koa-session-minimal'
 import dotenv from 'dotenv';
 import cache from 'koa-static-cache'
 dotenv.config();
 const app = new Koa();
-const route = router(app);
 
 app.use(koaBodyParse());
 
@@ -36,7 +35,7 @@ app
     }));
 
 app
-    .use(route.routes(), route.allowedMethods());
+    .use(router.routes(), router.allowedMethods());
 
 app.listen(process.env.PORT, () => {
     console.log('listen 127.0.0.1:8080');

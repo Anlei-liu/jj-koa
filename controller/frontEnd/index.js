@@ -2,7 +2,6 @@ import { showPost, queryPostOne } from "../../models/posts"
 import { queryProductAll, queryCategories } from "../../models/product"
 import { saveContact, querySlide } from '../../models/modules'
 import { queryCompany } from '../../models/manage'
-import { foamtTime } from "../../utils"
 function objectSort(property, desc) { //降序排列
     if (desc) {
         return function (a, b) {
