@@ -67,7 +67,7 @@ const queryProductOne = async (id) => {
 };
 
 const updateCategories =async(popularity, theme, advanced, giftBox) => {
-    const sql = `UPDATE categories SET popularity=${popularity},theme=${theme},advanced=${advanced},giftBox=${giftBox} WHERE 1`;
+    const sql = `UPDATE categories SET popularity="${popularity}",theme=${theme},advanced=${advanced},giftBox=${giftBox} WHERE 1`;
     return await query(sql)
 }
 
